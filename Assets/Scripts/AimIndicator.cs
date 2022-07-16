@@ -12,6 +12,6 @@ public class AimIndicator : MonoBehaviour {
         _aimIndicator.position = transform.position + mousePosition / 2;
     }
     public void UpdateSprite(Sprite sprite) {
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        _aimIndicator.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 }
