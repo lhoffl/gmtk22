@@ -348,6 +348,7 @@ MonoBehaviour:
   _positions:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   _speed: 1
   _projectiles:
   - {fileID: 1343169843920648133, guid: d84015ffe87c36a4cb4dfcb23c729756, type: 3}
