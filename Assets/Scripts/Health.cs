@@ -13,6 +13,7 @@ public class Health : MonoBehaviour {
 
     public bool IsDead => _health <= 0;
     public int CurrentHealth => _health;
+    public int MaxHealth => _maxHealth;
 
     public void Add(int value) {
         int previousHealth = _health;

@@ -23,6 +23,9 @@ public class HealthTextUI : MonoBehaviour {
     void Reset() {
         for(int i = 0; i < _diceFaceUI.Length; i++) {
             _diceFaceUI [i] .color = _healthyColor;
+            if (i > _health.MaxHealth - 1) {
+                _diceFaceUI [i].enabled = false;
+            }
         }
     }
 }
