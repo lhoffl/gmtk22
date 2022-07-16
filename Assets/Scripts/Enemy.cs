@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    public Transform[] _positions;
+    public List<Transform> _positions;
     [SerializeField] float _speed = 3;
 
     protected int _currentPosition = 0;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour {
 
     void Awake() {
         _gun = GetComponent<Gun>();
+        if (_positions == null || _positions.Count == 0)
+            _positions = new List<Transform>();
     }
 
     protected virtual void Update() {
@@ -30,7 +33,7 @@ public class Enemy : MonoBehaviour {
 
     protected void NextPosition() {
         _currentPosition++;
-        if (_currentPosition >= _positions.Length)
+        if (_currentPosition >= _positions.Count)
             _currentPosition = 0;
     }
 
@@ -39,5 +42,8 @@ public class Enemy : MonoBehaviour {
             transform.position = _positions [_currentPosition].position;
             NextPosition();
         }
+    }
+    public void AddPointToPath(Transform point) {
+        _positions.Add(point);
     }
 }

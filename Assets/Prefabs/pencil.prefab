@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6851441735615358111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -295,6 +295,8 @@ MonoBehaviour:
   _rateOfFire: 0.5
   _bulletSpeed: 3
   _projectilePrefab: {fileID: 1343169843920648133, guid: a5d0525c9fcaef848b9f1d063854eee5, type: 3}
+  _numberOfProjectiles: 1
+  _spread: 0
   _aimIndicator: {fileID: 6851441734789400037}
 --- !u!50 &6851441735615358104
 Rigidbody2D:
@@ -345,10 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19d0eb03921419fafa549eaac26f073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _positions: []
   _speed: 1
   _projectiles:
   - {fileID: 1343169843920648133, guid: d84015ffe87c36a4cb4dfcb23c729756, type: 3}
@@ -356,4 +355,3 @@ MonoBehaviour:
   - {fileID: 1343169843920648133, guid: 50fab818f4adf374c99ab19e684e92a3, type: 3}
   - {fileID: 1343169843920648133, guid: a5d0525c9fcaef848b9f1d063854eee5, type: 3}
   _spread: 3
-  _accuracy: 10

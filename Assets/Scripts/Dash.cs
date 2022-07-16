@@ -6,11 +6,15 @@ public class Dash : MonoBehaviour {
     [SerializeField] float _speed = 3;
     [SerializeField] float _dashLength = 3;
     [SerializeField] float _cooldown = 3;
+    [SerializeField] Sprite _invSprite;
     
     float _timeSinceLastDash = 0;
     Rigidbody2D _rigidbody;
     PlayerController _player;
-
+    SpriteRenderer _renderer;
+    
+    Sprite _originalSprite;
+    
     public float Cooldown => _cooldown;
     
     Vector3 _dashDirection;
@@ -21,11 +25,15 @@ public class Dash : MonoBehaviour {
     void Awake() {
         _rigidbody = GetComponent<Rigidbody2D>();
         _player = GetComponent<PlayerController>();
+        _originalSprite = _player.GetComponent<SpriteRenderer>().sprite;
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate() {
         if (Vector3.Distance(_startPosition, transform.position) >= _dashLength) {
             _player.MovementEnabled(true);
+            _player.GetComponent<Damageable>().Invincible = false;
+            _renderer.sprite = _originalSprite;
             return;
         }
         
@@ -39,12 +47,16 @@ public class Dash : MonoBehaviour {
         if (_timeSinceLastDash > 0) return;
 
         _player.MovementEnabled(true);
+        _player.GetComponent<Damageable>().Invincible = false;
+        _renderer.sprite = _originalSprite;
         
         if (Input.GetKeyDown(_inputKey)) {
             OnDashStarted?.Invoke();
             DashTowardsMouse();
             _timeSinceLastDash = _cooldown;
             _player.MovementEnabled(false);
+            _player.GetComponent<Damageable>().Invincible = true;
+            _renderer.sprite = _invSprite;
         }
     }
     
