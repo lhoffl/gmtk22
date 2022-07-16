@@ -2,7 +2,6 @@ using UnityEngine;
 public class PencilEnemy : Enemy {
     [SerializeField] Projectile[] _projectiles;
     [SerializeField] float _spread = 3f;
-    [SerializeField] int _accuracy = 10;
     
     protected override void Update() {
         UpdateShootDirection();

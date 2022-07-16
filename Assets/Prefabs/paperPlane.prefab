@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1670314904036653000}
   - component: {fileID: 1670314904036653003}
   - component: {fileID: 1546861883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: paperPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670314904036652999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8d2de14a864057b0322c4bdd94eb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positions:
-  - {fileID: 0}
-  _speed: 0.3
+  _positions: []
+  _speed: 3
+  _damageAmountOnImpact: 3
 --- !u!114 &1670314904036653000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d162b6f1e704e7e9d8a3a97d2d6aa59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 0}
+  _health: {fileID: 1670314904036653003}
+  Invincible: 0
 --- !u!114 &1670314904036653003
 MonoBehaviour:
   m_ObjectHideFlags: 0

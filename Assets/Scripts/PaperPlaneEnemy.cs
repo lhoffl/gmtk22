@@ -1,11 +1,11 @@
+using UnityEngine;
 public class PaperPlaneEnemy : Enemy {
-    protected override void Update() {
-        if (transform.position == _positions [_currentPosition].position) {
-            Destroy(this);
+    [SerializeField] int _damageAmountOnImpact = 3;
+    
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.GetComponent<PlayerController>() != null) {
+            other.gameObject.GetComponent<Damageable>().TakeDamage(_damageAmountOnImpact);
+            GetComponent<Damageable>().TakeDamage(int.MaxValue);
         }
-        
-        base.Update();
     }
-    
-    
 }
