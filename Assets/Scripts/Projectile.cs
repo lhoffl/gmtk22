@@ -26,6 +26,11 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other == null) return;
 
+        if (other.GetComponent<Projectile>() != null) {
+            _gun.AddToPool(this);
+            return;
+        }
+
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
         if (damageable == null) return;
         damageable.TakeDamage(_damageAmount);

@@ -36,8 +36,6 @@ public class Health : MonoBehaviour {
     }
 
     void HandleHealthChanged(int oldValue, int newValue) {
-        Debug.Log("health: " + newValue);
-        Debug.Log("ohealth: " + oldValue);
         OnHealthChanged?.Invoke(this, new HealthChangedEventArgs {
             Health = _health,
             MaxHealth = _maxHealth

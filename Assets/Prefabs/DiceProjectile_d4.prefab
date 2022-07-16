@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5148212599140767921}
   - component: {fileID: 8199721598788321761}
   - component: {fileID: -7351888888871050408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DiceProjectile_d4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

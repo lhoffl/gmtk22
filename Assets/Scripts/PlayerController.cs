@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
         {
             _gun.FireProjectile();
         }
+        
+        _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
     }
 
     private Vector2 GetMovementVectorFromInputs()
@@ -61,5 +63,10 @@ public class PlayerController : MonoBehaviour
     private void movePlayer()
     {
         rig.velocity = GetMovementVectorFromInputs();
+    }
+    
+    Vector3 FixedScreenToWorldPoint() {
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return new Vector3(worldPoint.x, worldPoint.y, 0f);
     }
 }
