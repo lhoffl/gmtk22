@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.J))
         {
             //spawn player
-            if(!player) player = playerPrefab.GetComponent<PlayerController>().spawnPlayer().gameObject;
+            // if(!player) player = playerPrefab.GetComponent<PlayerController>().spawnPlayer().gameObject;
         }
 
     }
