@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private float objectHeight;
     Gun _gun;
     AimIndicator _aimIndicator;
-    bool _movementEnabled;
+    bool _movementEnabled = true;
 
     public static PlayerController Instance { get; private set; }
 

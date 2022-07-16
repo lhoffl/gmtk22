@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
             //spawn player
             // if(!player) player = playerPrefab.GetComponent<PlayerController>().spawnPlayer().gameObject;
         }
-
     }
 
     public void RewardLootBox(LootBoxObject reward)
