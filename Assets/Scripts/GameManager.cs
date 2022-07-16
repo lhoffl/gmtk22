@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
     {
         if (!player)
         {
-            Debug.Log("Spawning player!");
             player = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
         }
     }
@@ -109,4 +108,28 @@ public class GameManager : MonoBehaviour
 
         _spawner.OnAllEnemiesDead += HandleNewLevel;
     }
+
+    private void ResetPlayerStats()
+    {
+        player.GetComponent<PlayerController>().ResetStats();
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game over man");
+        GoToScene(false, "GameOver");
+    }
+
+    public void MainMenu()
+    {
+        ResetPlayerStats();
+        GoToScene(false, "MainMenu");
+    }
+
+    // void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
+    //     Debug.Log("HandleHealthChanged event popped");
+    //     if (e.Health <= 0) {
+    //         GameOver();
+    //     }
+    // }
 }

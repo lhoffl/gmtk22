@@ -23,7 +23,6 @@ public class ReplayButton : MonoBehaviour
     void OnMouseUp()
     {
         if (_spriteRenderer) _spriteRenderer.sprite = _sprites[0];
-        //go to new scene
-        _gameManager.GoToScene(false, "MainMenu");
+        _gameManager.MainMenu();
     }
 }
