@@ -8,8 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] SceneManager sceneManager;
 
-    void Awake()
-    {
+    EnemySpawner _spawner;
+    public static GameManager Instance;
+
+    public int _numOfEnemies = 2;
+    public int _maxPath = 5;
+
+    void Awake() {
+        if(Instance == null)
+            Instance = this;
+        
         DontDestroyOnLoad(this);
         GetPlayer();
         
@@ -69,6 +77,16 @@ public class GameManager : MonoBehaviour
         sceneManager.ChangeScene(scene);
     }
 
+    void HandleNewLevel() {
+        _numOfEnemies++;
+        _maxPath++;
+        GoToScene(true, "Level1");
+    }
+
+    public void Test() {
+       GoToScene(true, "Level1"); 
+    }
+
     private void GetPlayer()
     {
         if (!player)
@@ -76,5 +94,19 @@ public class GameManager : MonoBehaviour
             Debug.Log("Spawning player!");
             player = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
         }
+    }
+
+    public void RegisterSpawner(EnemySpawner spawner) {
+        _spawner = spawner;
+        ModifySpawner(_numOfEnemies / 2, true, _maxPath);
+    }
+    
+    public void ModifySpawner(int numEnemies, bool spawnCover, int maxPathLength = 5, float delay = 2f) {
+        _spawner.SpawnCover = spawnCover;
+        _spawner._totalNumberOfEnemies = numEnemies;
+        _spawner._maxPathLength = maxPathLength;
+        _spawner.SpawnEnemies();
+
+        _spawner.OnAllEnemiesDead += HandleNewLevel;
     }
 }

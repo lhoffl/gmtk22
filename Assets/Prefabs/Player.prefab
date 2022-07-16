@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rateOfFire: 0.5
-  _bulletSpeed: 2
+  _bulletSpeed: 4
   _projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   _numberOfProjectiles: 1
   _spread: 30
