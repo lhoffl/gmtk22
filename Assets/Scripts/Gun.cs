@@ -37,15 +37,23 @@ public class Gun : MonoBehaviour {
     Projectile GetProjectile() {
         if (_pool.Count > 0) {
             Projectile projectile = _pool.Dequeue();
+            if (projectile == null) {
+                Destroy(projectile);
+                return GetNewProjectile();
+            }
             projectile.gameObject.SetActive(true);
             return projectile;
         } 
         else {
-            Projectile projectile = Instantiate(_projectilePrefab, _aimIndicator.position, Quaternion.identity);
-            projectile.gameObject.SetActive(true);
-            projectile.SetGun(this);
-            return projectile;
+            return GetNewProjectile();
         }
+    }
+
+    Projectile GetNewProjectile() {
+        Projectile projectile = Instantiate(_projectilePrefab, _aimIndicator.position, Quaternion.identity);
+        projectile.gameObject.SetActive(true);
+        projectile.SetGun(this);
+        return projectile;
     }
 
     public void AddToPool(Projectile projectile) {

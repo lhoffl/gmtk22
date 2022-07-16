@@ -16,7 +16,9 @@ public class HealthTextUI : MonoBehaviour {
     }
     
     void UpdateUI(object sender, HealthChangedEventArgs e) {
+        if (_diceFaceUI == null) return;
         for(int i = 0; i < _diceFaceUI.Length; i++) {
+            if (_diceFaceUI[i] == null) return;
             _diceFaceUI [i] .color = e.Health> i ? _healthyColor : _damagedColor;
         }
     }
