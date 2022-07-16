@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    public int health;
     public Rigidbody2D rig;
     public GameObject projectile;
 
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private float objectHeight;
     Gun _gun;
     AimIndicator _aimIndicator;
-    
+    bool _movementEnabled;
+
     public static PlayerController Instance { get; private set; }
 
     void Start()
@@ -39,7 +41,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movePlayer();
+        if(_movementEnabled)
+            movePlayer();
         CheckInputs();
     }
 
@@ -53,10 +56,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInputs()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetMouseButton(0))
         {
             _gun.FireProjectile();
-            Debug.Log("Gun? " + _gun.GunStatsString());
         }
         
         _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
@@ -84,5 +86,8 @@ public class PlayerController : MonoBehaviour
     Vector3 FixedScreenToWorldPoint() {
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return new Vector3(worldPoint.x, worldPoint.y, 0f);
+    }
+    public void MovementEnabled(bool enabled) {
+        _movementEnabled = enabled;
     }
 }
