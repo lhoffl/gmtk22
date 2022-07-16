@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4480053775640630970}
   - component: {fileID: 4480053775640630971}
-  - component: {fileID: 4480053775640630968}
+  - component: {fileID: 528937964}
+  - component: {fileID: 528937965}
   m_Layer: 0
   m_Name: boxOfDice
   m_TagString: Untagged
@@ -85,8 +86,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4480053775640630968
-BoxCollider2D:
+--- !u!70 &528937964
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480053775640630969}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07573509, y: -0.03927988}
+  m_Size: {x: 0.8790741, y: 1.0226489}
+  m_Direction: 0
+--- !u!70 &528937965
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,16 +115,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.068791986, y: -0.04749927}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8279381, y: 0.90328187}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.07573509, y: -0.03927988}
+  m_Size: {x: 0.8790741, y: 1.0226489}
+  m_Direction: 0
