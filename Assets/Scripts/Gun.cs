@@ -4,7 +4,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] float _rateOfFire = 0.5f;
     [SerializeField] float _bulletSpeed = 100f;
     [SerializeField] Projectile _projectilePrefab;
-    [SerializeField] GameObject _aimIndicator;
+    [SerializeField] Transform _aimIndicator;
     
     float _timeSinceLastShot = -1;
     Queue<Projectile> _pool = new Queue<Projectile>();
@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour {
         if (_timeSinceLastShot > 0) return;
         Projectile projectile = GetProjectile();
         if (projectile == null) return;
-        projectile.Launch(_aimIndicator.transform.position, (FixedScreenToWorldPoint() - transform.position).normalized * _bulletSpeed);
+        projectile.Launch(_aimIndicator.position, (FixedScreenToWorldPoint() - transform.position).normalized * _bulletSpeed);
         _timeSinceLastShot = _rateOfFire;
     }
 
@@ -26,8 +26,9 @@ public class Gun : MonoBehaviour {
             return projectile;
         } 
         else {
-            Projectile projectile = Instantiate(_projectilePrefab, _aimIndicator.transform.position, Quaternion.identity);
+            Projectile projectile = Instantiate(_projectilePrefab, _aimIndicator.position, Quaternion.identity);
             projectile.gameObject.SetActive(true);
+            projectile.SetGun(this);
             return projectile;
         }
     }

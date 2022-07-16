@@ -12,7 +12,6 @@ public class Projectile : MonoBehaviour {
     void Awake() {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
-        _gun = GetComponent<Gun>();
     }
 
     void Update() {
@@ -35,7 +34,10 @@ public class Projectile : MonoBehaviour {
     }
 
     public void Launch(Vector3 position, Vector3 velocity) {
+        Debug.Log(position);
         transform.position = position;
         _rigidbody.velocity = velocity;
     }
+
+    public void SetGun(Gun gun) => _gun = gun;
 }
