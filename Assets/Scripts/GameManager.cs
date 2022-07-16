@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
         //update player values
         if(reward.isItem)
         {
-            Debug.Log("REWARD: " + (reward.lootBoxItem.healthUp > 0 ? "HEALTH++" : "SPEED++"));
+            Debug.Log("REWARD: " + "HEALTH+" + reward.lootBoxItem.healthUp + ", SPEED+" + reward.lootBoxItem.speedUp);
             GoToScene(true, "Debug_Scene");
+            player.GetComponent<PlayerController>().PowerUp(reward.lootBoxItem.healthUp, reward.lootBoxItem.speedUp);
+            Debug.Log("NEW SPEED: " + player.GetComponent<PlayerController>().moveSpeed);
         }
         else
         {
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     private void GoToScene(bool spawnPlayer, string scene){
         player.SetActive(spawnPlayer);
+        player.GetComponent<PlayerController>().GetComponent<Gun>().ClearPool();
         sceneManager.ChangeScene(scene);
     }
 

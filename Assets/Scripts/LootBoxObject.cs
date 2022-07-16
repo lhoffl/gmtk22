@@ -8,19 +8,43 @@ public class LootBoxObject : MonoBehaviour
     public LootBoxItem lootBoxItem;
     public bool isItem = false;
     public bool isSelected = false;
+    public string objectType;
 
     // Start is called before the first frame update
     void Start()
     {
-        isItem = (Random.Range(1, 100) > 50);
-        if (isItem) SetToItem(); 
-        else SetToGun();
+        // isItem = (Random.Range(1, 100) > 50);
+        // if (isItem) SetToItem(); 
+        // else SetToGun();
     }
 
     void OnMouseDown()
     {
         Debug.Log("Clicked!");
         isSelected = true;
+    }
+
+    public void SetLootBox(string newType, int roll)
+    {
+        objectType = newType;
+        switch (newType)
+        {
+            case "gun":
+                isItem = false;
+                lootBoxGun.SetGun(roll);
+                SetToGun();
+                break;
+            case "health":
+                isItem = true;
+                lootBoxItem.SetPowerUp((roll == 6 ? 5 : roll), (roll == 6 ? 1 : 0));
+                SetToItem();
+                break;
+            case "speed":
+                isItem = true;
+                lootBoxItem.SetPowerUp((roll == 6 ? 1 : 0), (roll == 6 ? 5 : roll));
+                SetToItem();
+                break;
+        }
     }
 
    private void SetToItem()
@@ -30,7 +54,6 @@ public class LootBoxObject : MonoBehaviour
 
    private void SetToGun()
    {
-
-        lootBoxGun = Instantiate(lootBoxGun, this.transform.position, Quaternion.identity);
+        lootBoxGun = Instantiate(lootBoxGun, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 0.1f), Quaternion.identity);
    }
 }

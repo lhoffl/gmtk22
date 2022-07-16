@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1551948993151224767}
   - component: {fileID: 8869867830217589532}
   - component: {fileID: 6925034451816915401}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LootBoxGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfFire: 0.5
-  bulletSpeed: 100
-  projectilePrefab: {fileID: 0}
+  bulletSpeed: 2
+  projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   numberOfProjectiles: 1
   spread: 0
   _potentialProjectilePrefabs:
@@ -59,6 +59,13 @@ MonoBehaviour:
   - {fileID: 7478121667651178292, guid: b909e0803d8f2bf4e884f5a0ae80f16f, type: 3}
   sprite: {fileID: 6925034451816915401}
   text: {fileID: 1717970327411382160}
+  _sprites:
+  - {fileID: -200296486, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
+  - {fileID: -1011736164, guid: 43f025ffd3ad6ef47a7700d1789aa05f, type: 3}
+  - {fileID: 766554277, guid: d829cb8a80f97d04c94a11bceab51569, type: 3}
+  - {fileID: -2036702410, guid: 1a4e31e67398d174b91e603fded67194, type: 3}
+  - {fileID: 2051645333, guid: 172a3413220ab00439edb03e652e30d6, type: 3}
+  gunName: d4
 --- !u!212 &6925034451816915401
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
+  m_Sprite: {fileID: -200296486, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +129,7 @@ GameObject:
   - component: {fileID: 2106444447208239880}
   - component: {fileID: 1226461180379458566}
   - component: {fileID: 1717970327411382160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8257569179816804058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36, y: -0.08, z: 0}
+  m_LocalPosition: {x: -0.18, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -194,7 +201,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8257569179816804058}
-  m_Text: "Projectile:\r\nRate of Fire:\nBullet Speed: \nNumber of Projectiles: \nSpread:"
+  m_Text: "Projectile:\r dX\nDamage: 1 - X"
   m_OffsetZ: 0
   m_CharacterSize: 0.04
   m_LineSpacing: 1
@@ -207,4 +214,4 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4284496451

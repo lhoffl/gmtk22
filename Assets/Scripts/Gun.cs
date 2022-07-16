@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Gun : MonoBehaviour {
     [SerializeField] float _rateOfFire = 0.5f;
-    [SerializeField] float _bulletSpeed = 100f;
+    [SerializeField] float _bulletSpeed = 2;
     [SerializeField] Projectile _projectilePrefab;
-    [SerializeField] int _numberOfProjectiles = 1;
-    [SerializeField] float _spread = 0f;
+    [SerializeField] int _numberOfProjectiles = 3;
+    [SerializeField] float _spread = 15f;
     [SerializeField] Transform _aimIndicator;
 
     public Projectile Projectile => _projectilePrefab;
@@ -18,10 +18,15 @@ public class Gun : MonoBehaviour {
     
     public void FireProjectile() {
         if (_timeSinceLastShot > 0) return;
-        Projectile projectile = GetProjectile();
-        if (projectile == null) return;
-        projectile.Launch(_aimIndicator.position, _direction * _bulletSpeed);
+        float spreadStep = _spread / _numberOfProjectiles;
+        for(int i = 0; i < _numberOfProjectiles; i++) {
+            Projectile projectile = GetProjectile();
+            if (projectile == null) return;
+            Vector3 rotatedDirection = Quaternion.Euler(0, 0, (spreadStep * i)) * _direction;
+            projectile.Launch(_aimIndicator.position, (rotatedDirection * _bulletSpeed));
+        }
         _timeSinceLastShot = _rateOfFire;
+
     }
 
     Projectile GetProjectile() {
@@ -43,6 +48,8 @@ public class Gun : MonoBehaviour {
         _pool.Enqueue(projectile);
     }
 
+    public void ClearPool() => _pool.Clear();
+
     public void SetDirection(Vector3 direction) => _direction = direction;
 
     public void UpdateProjectile(Projectile projectile) {
@@ -51,6 +58,7 @@ public class Gun : MonoBehaviour {
 
     public void UpdateGun(LootBoxGun newGun)
     {
+        Debug.Log("new gun bullet speed: " + newGun.bulletSpeed);
         _rateOfFire = newGun.rateOfFire;
         _bulletSpeed = newGun.bulletSpeed;
         _projectilePrefab = newGun.projectilePrefab;
