@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour {
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
         
         if (damageable != null) {
-             int damage = Random.Range(1, _damageAmount + 1);
+             int damage = UnityEngine.Random.Range(1, _damageAmount + 1);
             damageable.TakeDamage(_damageAmount);
             if (_damageNumberController) _damageNumberController.SpawnDamageNumber(damage, transform.position);
             _gun.AddToPool(this);

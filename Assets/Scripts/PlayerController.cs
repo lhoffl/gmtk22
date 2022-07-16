@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
+
+    [SerializeField] AudioClip _deathClip;
+    [SerializeField] AudioClip _shootClip;
+
     public float moveSpeed;
     public float speedUpgradeIncrement;
     public float maxSpeed;
@@ -20,11 +23,23 @@ public class PlayerController : MonoBehaviour
     AimIndicator _aimIndicator;
     bool _movementEnabled = true;
 
+    AudioSource _source;
+    Health _health;
+
     public static PlayerController Instance { get; private set; }
 
     void Start()
     {
         DontDestroyOnLoad(this);
+        _source = GetComponent<AudioSource>();
+        _health = GetComponent<Health>();
+        _health.OnHealthChanged += HandleHealthChanged;
+    }
+    
+    void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
+        if (e.Health <= 0) {
+            _source.PlayOneShot(_deathClip);
+        }
     }
 
     void Awake() {
@@ -38,7 +53,11 @@ public class PlayerController : MonoBehaviour
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.extents.y;
 
         _gun = GetComponent<Gun>();
+        _gun.OnShotFired += HandleShotFired;
         _aimIndicator = GetComponent<AimIndicator>();
+    }
+    void HandleShotFired() {
+        _source.PlayOneShot(_shootClip);
     }
 
     void Update()

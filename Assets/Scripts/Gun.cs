@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public class Gun : MonoBehaviour {
@@ -14,6 +15,8 @@ public class Gun : MonoBehaviour {
     Queue<Projectile> _pool = new Queue<Projectile>();
     Vector3 _direction = Vector3.down;
 
+    public event Action OnShotFired;    
+    
     void Update() => _timeSinceLastShot -= Time.deltaTime;
     
     public void FireProjectile() {
@@ -25,6 +28,8 @@ public class Gun : MonoBehaviour {
             Vector3 rotatedDirection = Quaternion.Euler(0, 0, (spreadStep * i)) * _direction;
             projectile.Launch(_aimIndicator.position, (rotatedDirection * _bulletSpeed));
         }
+        
+        OnShotFired?.Invoke();
         _timeSinceLastShot = _rateOfFire;
 
     }
