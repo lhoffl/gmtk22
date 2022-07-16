@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
     Gun _gun;
+    AimIndicator _aimIndicator;
     
     public static PlayerController Instance { get; private set; }
-
 
     void Start()
     {
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.extents.y;
 
         _gun = GetComponent<Gun>();
+        _aimIndicator = GetComponent<AimIndicator>();
     }
 
     void Update()
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateGun(LootBoxGun newGun)
     {
         _gun.UpdateGun(newGun);
+        _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
     }
     
     Vector3 FixedScreenToWorldPoint() {

@@ -7,6 +7,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] int _numberOfProjectiles = 1;
     [SerializeField] float _spread = 0f;
     [SerializeField] Transform _aimIndicator;
+
+    public Projectile Projectile => _projectilePrefab;
     
     float _timeSinceLastShot = -1;
     Queue<Projectile> _pool = new Queue<Projectile>();
