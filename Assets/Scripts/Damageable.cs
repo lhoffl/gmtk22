@@ -3,17 +3,13 @@ public class Damageable : MonoBehaviour {
     [SerializeField] Health _health;
 
     public void TakeDamage(int amount) {
-
-        int remainder = amount;
-        
-        if (remainder > 0 && _health != null)
-            _health.Remove(Mathf.Abs(remainder));
+        Debug.Log(amount);
+        if (_health != null) 
+            _health.Remove(Mathf.Abs(amount));
     }
 
     public void Heal(int amount) {
-        int remainder = amount;
-        
-        if(remainder > 0 && _health != null)
-            _health.Add(remainder);
+        if(_health != null)
+            _health.Add(Mathf.Abs(amount));
     }
 }

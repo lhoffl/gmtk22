@@ -14,9 +14,13 @@ public class PlayerController : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
     Gun _gun;
+    
+    public static PlayerController Instance { get; private set; }
 
-    void Start()
-    {
+    void Awake() {
+        if (Instance == null)
+            Instance = this;
+        
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.extents.y;

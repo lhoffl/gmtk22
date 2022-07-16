@@ -28,13 +28,11 @@ public class Projectile : MonoBehaviour {
 
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
         if (damageable == null) return;
-
         damageable.TakeDamage(_damageAmount);
         _gun.AddToPool(this);
     }
 
     public void Launch(Vector3 position, Vector3 velocity) {
-        Debug.Log(position);
         transform.position = position;
         _rigidbody.velocity = velocity;
     }
