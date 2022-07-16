@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 6851441735615358110}
+  Invincible: 0
 --- !u!114 &6851441735615358110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,8 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68cd1830e20c4619b0800bf2412638fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.5
-  _bulletSpeed: 3
+  _rateOfFire: 0.75
+  _bulletSpeed: 2.5
   _projectilePrefab: {fileID: 1343169843920648133, guid: a5d0525c9fcaef848b9f1d063854eee5, type: 3}
   _numberOfProjectiles: 1
   _spread: 0
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _positions: []
   _speed: 1
+  ShouldShoot: 1
   _projectiles:
   - {fileID: 1343169843920648133, guid: d84015ffe87c36a4cb4dfcb23c729756, type: 3}
   - {fileID: 1343169843920648133, guid: 897114774387aa344a45a45bdb2bad9e, type: 3}

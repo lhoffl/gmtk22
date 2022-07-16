@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
@@ -6,14 +7,28 @@ public class Enemy : MonoBehaviour {
     public List<Transform> _positions;
     [SerializeField] float _speed = 3;
 
-    protected int _currentPosition = 0;
+    public bool ShouldShoot = true;
+
+    public event Action OnDeath; 
     
+    protected int _currentPosition = 0;
     protected Gun _gun;
 
+    Health _health;
+    
     void Awake() {
         _gun = GetComponent<Gun>();
         if (_positions == null || _positions.Count == 0)
             _positions = new List<Transform>();
+
+        _health = GetComponent<Health>();
+        _health.OnHealthChanged += HandleHealthChanged;
+    }
+    
+    void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
+        if (e.Health <= 0) {
+            OnDeath?.Invoke();
+        }
     }
 
     protected virtual void Update() {
@@ -24,6 +39,7 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void TryShoot() {
         if (_gun == null) return;
+        if (!ShouldShoot) return;
        _gun.FireProjectile(); 
     }
 

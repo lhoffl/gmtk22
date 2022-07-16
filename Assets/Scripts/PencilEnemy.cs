@@ -11,6 +11,7 @@ public class PencilEnemy : Enemy {
     void UpdateShootDirection() {
         float r = Random.Range(-_spread, _spread);
 
+        if (PlayerController.Instance == null) return;
         _gun.SetDirection((PlayerController.Instance.transform.position * r - transform.position).normalized);
     }
     

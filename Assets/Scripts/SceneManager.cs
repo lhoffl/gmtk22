@@ -1,9 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour
-{
+public class SceneManager : MonoBehaviour {
+    public static int CurrentLevel;
+    public static SceneManager Instance { get; private set; }
+
+    void Awake() {
+        CurrentLevel = 1;
+        DontDestroyOnLoad(this);
+        Instance = this;
+    }
+
     public void ChangeScene(int scene)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
@@ -12,5 +19,13 @@ public class SceneManager : MonoBehaviour
     public void ChangeScene(string scene)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+    }
+    
+    public void LoadLevel(int level) {
+        StartCoroutine(Wait(level));
+    }
+    IEnumerator Wait(int level) {
+        yield return new WaitForSecondsRealtime(2);
+        ChangeScene("Level" + level);
     }
 }
