@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour {
     
     float _timeSinceLastShot = -1;
     Queue<Projectile> _pool = new Queue<Projectile>();
+    Vector3 _direction = Vector3.down;
 
     void Update() => _timeSinceLastShot -= Time.deltaTime;
     
@@ -17,7 +18,7 @@ public class Gun : MonoBehaviour {
         if (_timeSinceLastShot > 0) return;
         Projectile projectile = GetProjectile();
         if (projectile == null) return;
-        projectile.Launch(_aimIndicator.position, (FixedScreenToWorldPoint() - transform.position).normalized * _bulletSpeed);
+        projectile.Launch(_aimIndicator.position, _direction * _bulletSpeed);
         _timeSinceLastShot = _rateOfFire;
     }
 
@@ -39,10 +40,11 @@ public class Gun : MonoBehaviour {
         projectile.gameObject.SetActive(false);
         _pool.Enqueue(projectile);
     }
-    
-    Vector3 FixedScreenToWorldPoint() {
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return new Vector3(worldPoint.x, worldPoint.y, 0f);
+
+    public void SetDirection(Vector3 direction) => _direction = direction;
+
+    public void UpdateProjectile(Projectile projectile) {
+        _projectilePrefab = projectile;
     }
 
     public void UpdateGun(LootBoxGun newGun)
