@@ -151,3 +151,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3546426692775660572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777041109258208759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cd1830e20c4619b0800bf2412638fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rateOfFire: 0.5
+  _bulletSpeed: 100
+  _projectilePrefab: {fileID: 8965126027895123442, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
+  _aimIndicator: {fileID: 0}
