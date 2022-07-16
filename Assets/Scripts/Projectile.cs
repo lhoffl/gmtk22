@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
@@ -34,15 +35,23 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other == null) return;
-
+        
         if (other.GetComponent<Projectile>() != null) {
             _gun.AddToPool(this);
             return;
         }
 
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
-        if (damageable == null) return;
-        damageable.TakeDamage(_damageAmount);
+        if (damageable != null) {
+            damageable.TakeDamage(_damageAmount);
+            _gun.AddToPool(this);
+            return;
+        }
+
+        _gun.AddToPool(this);
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
         _gun.AddToPool(this);
     }
 
