@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4071066885685467097}
   - component: {fileID: 9071632191245586431}
   - component: {fileID: 6311053754988355041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DiceProjectile_d8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d829cb8a80f97d04c94a11bceab51569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfae3c521fb3554d840cb8c391c732d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 0
-  _damageAmount: 0
+  _duration: 8
+  _damageAmount: 1
 --- !u!50 &9071632191245586431
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -132,7 +132,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

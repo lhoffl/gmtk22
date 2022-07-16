@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             _gun.FireProjectile();
+            Debug.Log("Gun? " + _gun.GunStatsString());
         }
         
         _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
