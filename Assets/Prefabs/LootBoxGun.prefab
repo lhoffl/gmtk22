@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9755995e21dcc43bb6950b2fcae485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.5
-  _bulletSpeed: 100
-  _projectilePrefab: {fileID: 0}
-  _numberOfProjectiles: 1
-  _spread: 0
+  rateOfFire: 0.5
+  bulletSpeed: 100
+  projectilePrefab: {fileID: 0}
+  numberOfProjectiles: 1
+  spread: 0
   _potentialProjectilePrefabs:
-  - {fileID: -7566012898000821745, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
+  - {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   - {fileID: 8106193058657149903, guid: c7e958ca79f51274a9602fbc91db7a3c, type: 3}
   - {fileID: -4071066885685467097, guid: e1bf8154a500c9b4a9490d1c1fded74b, type: 3}
   - {fileID: -7844054207243075908, guid: cf0d87f9fb769674f83bbbbd9ad43c06, type: 3}

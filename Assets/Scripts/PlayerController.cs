@@ -17,9 +17,17 @@ public class PlayerController : MonoBehaviour
     
     public static PlayerController Instance { get; private set; }
 
+
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     void Awake() {
         if (Instance == null)
             Instance = this;
+
+        if (!MainCamera) MainCamera = FindObjectOfType<Camera>();
         
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.extents.x;
@@ -61,5 +69,10 @@ public class PlayerController : MonoBehaviour
     private void movePlayer()
     {
         rig.velocity = GetMovementVectorFromInputs();
+    }
+
+    public void UpdateGun(LootBoxGun newGun)
+    {
+        _gun.UpdateGun(newGun);
     }
 }

@@ -11,11 +11,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this);
-        if (!player)
-        {
-            PlayerController temp = FindObjectOfType<PlayerController>();
-            if (temp) player = temp.gameObject;
-        }
+        GetPlayer();
+        
     }
 
     // Update is called once per frame
@@ -23,7 +20,6 @@ public class GameManager : MonoBehaviour
     {
         //if(player) Debug.Log(player.name + " - " + player.transform.position.ToString());
         //else Debug.Log("No player");
-
         testInputs();
     }
 
@@ -32,13 +28,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             //Go to debug scene
-            sceneManager.ChangeScene("Debug_Scene");
+            GoToScene(true, "Debug_Scene");
         }
 
         if(Input.GetKeyDown(KeyCode.L))
         {
             //go to lootbox scene
-            sceneManager.ChangeScene("Debug_Lootbox_Scene");
+            GoToScene(false, "Debug_Lootbox_Scene");
         }
 
         if(Input.GetKeyDown(KeyCode.J))
@@ -55,13 +51,28 @@ public class GameManager : MonoBehaviour
         if(reward.isItem)
         {
             Debug.Log("REWARD: " + (reward.lootBoxItem.healthUp > 0 ? "HEALTH++" : "SPEED++"));
-            sceneManager.ChangeScene("Andy Test");
+            GoToScene(true, "Debug_Scene");
         }
         else
         {
             Debug.Log("REWARD: " + "beeg new gun");
-            sceneManager.ChangeScene("Andy Test");
+            GoToScene(true, "Debug_Scene");
+            player.GetComponent<PlayerController>().UpdateGun(reward.lootBoxGun);
         }
         //go to next level
+    }
+
+    private void GoToScene(bool spawnPlayer, string scene){
+        player.SetActive(spawnPlayer);
+        sceneManager.ChangeScene(scene);
+    }
+
+    private void GetPlayer()
+    {
+        if (!player)
+        {
+            Debug.Log("Spawning player!");
+            player = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+        }
     }
 }
