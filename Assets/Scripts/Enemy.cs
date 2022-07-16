@@ -2,10 +2,10 @@ using System.Timers;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    [SerializeField] Transform[] _positions;
+    public Transform[] _positions;
     [SerializeField] float _speed = 3;
 
-    int _currentPosition = 0;
+    protected int _currentPosition = 0;
     
     protected Gun _gun;
 
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
     }
 
     protected virtual void TryShoot() {
+        if (_gun == null) return;
        _gun.FireProjectile(); 
     }
 
