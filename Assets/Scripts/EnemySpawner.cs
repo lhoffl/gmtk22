@@ -28,5 +28,11 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
-    void Awake() => SpawnEnemies();
+    void Awake() {
+        for (int i = 0; i < _spawnPointsAndPathLocations.Count; i++) {
+            _spawnPointsAndPathLocations [i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        }
+        
+        SpawnEnemies();
+    }
 }
