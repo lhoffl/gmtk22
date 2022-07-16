@@ -55,4 +55,15 @@ public class Gun : MonoBehaviour {
         _numberOfProjectiles = newGun.numberOfProjectiles;
         _spread = newGun.spread;
     }
+
+    public string GunStatsString()
+    {
+        return 
+        "Projectile: " + _projectilePrefab.GetComponent<SpriteRenderer>().sprite.name + System.Environment.NewLine +
+        "Rate of Fire: " + _rateOfFire + System.Environment.NewLine + 
+        "Bullet Speed: " + _bulletSpeed + System.Environment.NewLine + 
+        "Number of Projectiles: " + _numberOfProjectiles +System.Environment.NewLine + 
+        "Spread: " + _spread;
+    }
+
 }
