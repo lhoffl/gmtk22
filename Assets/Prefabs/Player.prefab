@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: 4893533983028249169}
   - component: {fileID: 6454563094601442335}
   - component: {fileID: 3546426692775660572}
-  - component: {fileID: 717345688}
   - component: {fileID: 717345689}
   - component: {fileID: 717345690}
   - component: {fileID: 717345691}
@@ -190,7 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  health: 0
+  speedUpgradeIncrement: 0.3
+  maxSpeed: 5
   rig: {fileID: 6454563094601442335}
   projectile: {fileID: 2738442832370158527, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   MainCamera: {fileID: 0}
@@ -257,25 +257,7 @@ MonoBehaviour:
   _bulletSpeed: 2
   _projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   _numberOfProjectiles: 1
-  _spread: 0
-  _aimIndicator: {fileID: 812207336}
---- !u!114 &717345688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6777041109258208759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68cd1830e20c4619b0800bf2412638fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rateOfFire: 0.3
-  _bulletSpeed: 1
-  _projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
-  _numberOfProjectiles: 1
-  _spread: 0
+  _spread: 30
   _aimIndicator: {fileID: 812207336}
 --- !u!114 &717345689
 MonoBehaviour:

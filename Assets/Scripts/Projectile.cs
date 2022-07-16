@@ -52,4 +52,6 @@ public class Projectile : MonoBehaviour {
     }
 
     public void SetGun(Gun gun) => _gun = gun;
+
+    public int GetDamage() => _damageAmount;
 }

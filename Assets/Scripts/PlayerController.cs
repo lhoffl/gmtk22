@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    public int health;
+    public float speedUpgradeIncrement;
+    public float maxSpeed;
     public Rigidbody2D rig;
     public GameObject projectile;
 
@@ -56,7 +57,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             _gun.FireProjectile();
-            Debug.Log("Gun? " + _gun.GunStatsString());
         }
         
         _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
@@ -79,6 +79,33 @@ public class PlayerController : MonoBehaviour
     {
         _gun.UpdateGun(newGun);
         _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
+    }
+
+    public void PowerUp(int health, int speed)
+    {
+        Debug.Log("Player Power Up: H+" + health + " S+" + speed);
+        if (health > 0)
+        {
+            Health playerHealth = GetComponent<Health>();
+            if (playerHealth)
+            {
+                if (playerHealth.MaxHealth - playerHealth.CurrentHealth < health) playerHealth.Add(playerHealth.MaxHealth - playerHealth.CurrentHealth);
+                else playerHealth.Add(health);
+            }
+        }
+
+        if (speed > 0)
+        {
+            for(int i = 0; i < speed; i++)
+            {
+                if (moveSpeed < maxSpeed)
+                {
+                    if (moveSpeed + speedUpgradeIncrement > maxSpeed) moveSpeed = maxSpeed;
+                    else moveSpeed += speedUpgradeIncrement;
+                    Debug.Log("newmovespeed: " + moveSpeed);
+                }
+            }
+        }
     }
     
     Vector3 FixedScreenToWorldPoint() {
