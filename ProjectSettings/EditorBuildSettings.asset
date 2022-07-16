@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Andy Test.unity
     guid: c4209ea071a4aba4096c6a2874e2a610
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: da126c37406e48d4b8f5f023547c35b4
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 78d26a30830da734a8db9e878631794c
   m_configObjects: {}
