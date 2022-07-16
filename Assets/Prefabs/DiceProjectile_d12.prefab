@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 12
   _damageAmount: 1
+  _rotate: 1
+  _rotationSpeed: 200
 --- !u!50 &-9211501510829580225
 Rigidbody2D:
   serializedVersion: 4

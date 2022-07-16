@@ -138,3 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 4
   _damageAmount: 2
+  _rotate: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5148212599140767921}
   - component: {fileID: 8199721598788321761}
   - component: {fileID: -7351888888871050408}
+  - component: {fileID: -5393813894618458873}
   m_Layer: 7
   m_Name: DiceProjectile_d4
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
+  m_Sprite: {fileID: -200296486, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 4
   _damageAmount: 1
+  _rotate: 1
+  _rotationSpeed: 200
 --- !u!50 &8199721598788321761
 Rigidbody2D:
   serializedVersion: 4
@@ -138,3 +141,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!95 &-5393813894618458873
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738442832370158527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 481b6e2e40acd4d4282e22e2040fc42c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
