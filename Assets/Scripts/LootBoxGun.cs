@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LootBoxGun : MonoBehaviour
 {
-    [SerializeField] float _rateOfFire = 0.5f;
-    [SerializeField] float _bulletSpeed = 100f;
-    [SerializeField] Projectile _projectilePrefab;
-    [SerializeField] int _numberOfProjectiles = 1;
-    [SerializeField] float _spread = 0f;
+    public float rateOfFire = 0.5f;
+    public  float bulletSpeed = 100f;
+    public  Projectile projectilePrefab;
+    public  int numberOfProjectiles = 1;
+    public  float spread = 0f;
     [SerializeField] List<Projectile> _potentialProjectilePrefabs;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] TextMesh text;
@@ -26,12 +26,12 @@ public class LootBoxGun : MonoBehaviour
 
     private void RandomizeProperties()
     {
-        _rateOfFire = Random.Range(0.1f, 1.0f);
-        _bulletSpeed = Random.Range(10f, 300f);
-        _projectilePrefab = _potentialProjectilePrefabs[Random.Range(0, (_potentialProjectilePrefabs.Count - 1))];
-        _numberOfProjectiles = Random.Range(0, 100) < 75 ? 1 : Random.Range(1,3); 
-        _spread = _numberOfProjectiles == 1 ? 0f : Random.Range(45, 90);
-        sprite.sprite = _projectilePrefab.GetComponent<SpriteRenderer>().sprite;
+        rateOfFire = Random.Range(0.1f, 1.0f);
+        bulletSpeed = Random.Range(10f, 300f);
+        projectilePrefab = _potentialProjectilePrefabs[Random.Range(0, (_potentialProjectilePrefabs.Count - 1))];
+        numberOfProjectiles = Random.Range(0, 100) < 75 ? 1 : Random.Range(1,3); 
+        spread = numberOfProjectiles == 1 ? 0f : Random.Range(45, 90);
+        sprite.sprite = projectilePrefab.GetComponent<SpriteRenderer>().sprite;
         DrawText();
     }
 
@@ -39,10 +39,10 @@ public class LootBoxGun : MonoBehaviour
     {
         return 
         "Projectile: " + sprite.sprite.name + System.Environment.NewLine +
-        "Rate of Fire: " + _rateOfFire + System.Environment.NewLine + 
-        "Bullet Speed: " + _bulletSpeed + System.Environment.NewLine + 
-        "Number of Projectiles: " + _numberOfProjectiles +System.Environment.NewLine + 
-        "Spread: " + _spread;
+        "Rate of Fire: " + rateOfFire + System.Environment.NewLine + 
+        "Bullet Speed: " + bulletSpeed + System.Environment.NewLine + 
+        "Number of Projectiles: " + numberOfProjectiles +System.Environment.NewLine + 
+        "Spread: " + spread;
     }
 
     private void DrawText()

@@ -4,6 +4,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] float _rateOfFire = 0.5f;
     [SerializeField] float _bulletSpeed = 100f;
     [SerializeField] Projectile _projectilePrefab;
+    [SerializeField] int _numberOfProjectiles = 1;
+    [SerializeField] float _spread = 0f;
     [SerializeField] Transform _aimIndicator;
     
     float _timeSinceLastShot = -1;
@@ -43,5 +45,14 @@ public class Gun : MonoBehaviour {
 
     public void UpdateProjectile(Projectile projectile) {
         _projectilePrefab = projectile;
+    }
+
+    public void UpdateGun(LootBoxGun newGun)
+    {
+        _rateOfFire = newGun.rateOfFire;
+        _bulletSpeed = newGun.bulletSpeed;
+        _projectilePrefab = newGun.projectilePrefab;
+        _numberOfProjectiles = newGun.numberOfProjectiles;
+        _spread = newGun.spread;
     }
 }
