@@ -7,6 +7,9 @@ public class MusicManager : MonoBehaviour {
     AudioSource _source;
 
     bool _loopMusic = true;
+    
+    [SerializeField] AudioClip _bossStart;
+    [SerializeField] AudioClip _bossLoop;
 
     public static MusicManager Instance { get; private set; }
     
@@ -51,5 +54,13 @@ public class MusicManager : MonoBehaviour {
         _source.volume = amount;
         yield return new WaitForSeconds(seconds);
         _source.volume = 1.0f;
+    }
+
+    public void StartBossMusic() {
+        _source.Stop();
+        _source.PlayOneShot(_bossStart);
+        _source.clip = _bossLoop;
+        _source.PlayDelayed(_bossStart.length);
+
     }
 }

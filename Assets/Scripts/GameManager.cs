@@ -58,14 +58,20 @@ public class GameManager : MonoBehaviour
     {
         if(reward.isItem)
         {
-            if (_level != 10) GoToScene(true, "Level1");
-            else GoToScene(true, "DebugBoss");
+            if (_level != 2) GoToScene(true, "Level1");
+            else {
+                GoToScene(true, "DebugBoss");
+                MusicManager.Instance.StartBossMusic();
+            }
             player.GetComponent<PlayerController>().PowerUp(reward.lootBoxItem.healthUp, reward.lootBoxItem.speedUp);
         }
         else
         {
-            if (_level != 10) GoToScene(true, "Level1");
-            else GoToScene(true, "DebugBoss");
+            if (_level != 2) GoToScene(true, "Level1");
+            else {
+                GoToScene(true, "DebugBoss");
+                MusicManager.Instance.StartBossMusic();
+            }
             player.GetComponent<PlayerController>().UpdateGun(reward.lootBoxGun);
         }
     }
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviour
         _level++;
         _maxPath++;
 
-        if (_level % 5 == 0) {
+        if (_level % 2 == 0) {
             GoToScene(false, "Debug_Lootbox_scene");
         }
         else {
