@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 4
-  _damageAmount: 2
+  _damageAmount: 1
   _rotate: 1
   _rotationSpeed: 30
 --- !u!50 &2403099791221200320

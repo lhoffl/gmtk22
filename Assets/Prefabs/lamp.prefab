@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68cd1830e20c4619b0800bf2412638fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rateOfFire: 0.1
+  _rateOfFire: 0.8
   _bulletSpeed: 5
   _projectilePrefab: {fileID: 1805403063571528488, guid: 29f90e75b6020db47ae671045615015f, type: 3}
   _numberOfProjectiles: 5

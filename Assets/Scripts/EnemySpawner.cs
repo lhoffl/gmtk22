@@ -35,7 +35,8 @@ public class EnemySpawner : MonoBehaviour {
             Enemy enemy = Instantiate(_enemyTypes [randomEnemyType], _spawnPointsAndPathLocations [randomSpawnPoint]);
 
             enemy.OnDeath += HandleEnemyDeath;
-            
+            StartCoroutine(enemy.Wait(0.5f));
+                
             enemy.ShouldShoot = _shouldShoot;
             enemy.AddPointToPath(_spawnPointsAndPathLocations[randomSpawnPoint]);
             _spawnPointsAndPathLocations.Remove(_spawnPointsAndPathLocations[randomSpawnPoint]);
