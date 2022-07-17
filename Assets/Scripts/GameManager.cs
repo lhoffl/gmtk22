@@ -85,7 +85,11 @@ public class GameManager : MonoBehaviour
 
         if (_level % 5 == 0) {
             GoToScene(false, "Debug_Lootbox_scene");
-        } else {
+        }
+        if (_level == 6) {
+            MusicManager.Instance.StartBossMusic();
+        } 
+        else {
             GoToScene(true, "Level1");
         }
     }
