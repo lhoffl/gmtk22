@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour {
 
     public void PowerUp(int health, int speed)
     {
-        Debug.Log("Player Power Up: H+" + health + " S+" + speed);
         if (health > 0)
         {
             Health playerHealth = GetComponent<Health>();
@@ -135,7 +134,6 @@ public class PlayerController : MonoBehaviour {
                 {
                     if (moveSpeed + speedUpgradeIncrement > maxSpeed) moveSpeed = maxSpeed;
                     else moveSpeed += speedUpgradeIncrement;
-                    Debug.Log("newmovespeed: " + moveSpeed);
                 }
             }
         }

@@ -45,7 +45,6 @@ public class LootBoxController : MonoBehaviour
 
     private void SpawnLootBox()
     {
-        Debug.Log("spawning lootbox");
         _isLootBoxSpawned = true;
         Instantiate(lootBoxObjectPrefab, new Vector3(this.transform.position.x - 1, this.transform.position.y, this.transform.position.z), Quaternion.identity);
         Instantiate(lootBoxObjectPrefab, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);

@@ -10,17 +10,8 @@ public class LootBoxObject : MonoBehaviour
     public bool isSelected = false;
     public string objectType;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // isItem = (Random.Range(1, 100) > 50);
-        // if (isItem) SetToItem(); 
-        // else SetToGun();
-    }
-
     void OnMouseDown()
     {
-        Debug.Log("Clicked!");
         isSelected = true;
     }
 

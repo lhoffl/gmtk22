@@ -71,7 +71,6 @@ public class Gun : MonoBehaviour {
 
     public void UpdateGun(LootBoxGun newGun)
     {
-        Debug.Log("new gun bullet speed: " + newGun.bulletSpeed);
         _rateOfFire = newGun.rateOfFire;
         _bulletSpeed = newGun.bulletSpeed;
         _projectilePrefab = newGun.projectilePrefab;
