@@ -139,3 +139,4 @@ MonoBehaviour:
   _duration: 4
   _damageAmount: 1
   _rotate: 0
+  _rotationSpeed: 0.01

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LootBoxController : MonoBehaviour
@@ -13,6 +14,7 @@ public class LootBoxController : MonoBehaviour
 
     private bool _isLootBoxSpawned = false;
 
+    AudioSource _source;
     public int _roll = 3;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class LootBoxController : MonoBehaviour
     {
         //_roll = Random.Range(1,7);
         _lootBoxOptions = new List<LootBoxObject>();
+        _source = GetComponent<AudioSource>();
         _gameManager = FindObjectOfType<GameManager>();
         _rollD6 = Instantiate(rollD6Prefab, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
     }
@@ -43,8 +46,9 @@ public class LootBoxController : MonoBehaviour
         }
     }
 
-    private void SpawnLootBox()
-    {
+    private void SpawnLootBox() {
+        
+        _source.Play();
         _isLootBoxSpawned = true;
         Instantiate(lootBoxObjectPrefab, new Vector3(this.transform.position.x - 1, this.transform.position.y, this.transform.position.z), Quaternion.identity);
         Instantiate(lootBoxObjectPrefab, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);

@@ -7,7 +7,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
     public List<Transform> _positions;
     [SerializeField] float _speed = 3;
+    [SerializeField] AudioClip _deathClip;
 
+
+    AudioSource _source;
     public bool ShouldShoot = true;
 
     public event Action OnDeath; 
@@ -24,12 +27,14 @@ public class Enemy : MonoBehaviour {
             _positions = new List<Transform>();
 
         _health = GetComponent<Health>();
+        _source = GetComponent<AudioSource>();
         _health.OnHealthChanged += HandleHealthChanged;
     }
     
     void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
         if (e.Health <= 0) {
             OnDeath?.Invoke();
+            _source.PlayOneShot(_deathClip);
         }
     }
 
