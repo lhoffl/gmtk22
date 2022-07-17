@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -149,5 +150,11 @@ public class PlayerController : MonoBehaviour {
         _gun = _defaultGun;
         Health playerHealth = GetComponent<Health>();
         if(playerHealth) playerHealth.Add(playerHealth.MaxHealth);
+    }
+
+    public IEnumerator IFrameOnNewLevel(float f) {
+        GetComponent<Damageable>().Invincible = true;
+        yield return new WaitForSecondsRealtime(f);
+        GetComponent<Damageable>().Invincible = false;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,12 @@ public class GameManager : MonoBehaviour
 
     EnemySpawner _spawner;
     public static GameManager Instance;
-
-    public int _numOfEnemies = 2;
+    
+    public int _level = 1;
     public int _maxPath = 5;
 
+    public event Action<int> OnNewLevel;
+    
     void Awake() {
         if(Instance == null)
             Instance = this;
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
     }
 
     void HandleNewLevel() {
-        _numOfEnemies++;
+        _level++;
         _maxPath++;
         GoToScene(true, "Level1");
     }
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (!player)
         {
             player = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+            player.enabled = false;
             player.OnPlayerDied += HandlePlayerDeath;
         }
     }
@@ -100,8 +104,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void RegisterSpawner(EnemySpawner spawner) {
+        OnNewLevel?.Invoke(_level);
         _spawner = spawner;
-        ModifySpawner(_numOfEnemies / 2, true, _maxPath);
+        ModifySpawner(Mathf.Clamp(_level / 2, 1, 69), true, _maxPath);
+        player.IFrameOnNewLevel(1f);
     }
     
     public void ModifySpawner(int numEnemies, bool spawnCover, int maxPathLength = 5, float delay = 2f) {

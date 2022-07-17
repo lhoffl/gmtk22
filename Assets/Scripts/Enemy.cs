@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class Enemy : MonoBehaviour {
     protected Gun _gun;
 
     Health _health;
-    
+    bool _gameStart = false;
+
     void Awake() {
         _gun = GetComponent<Gun>();
         if (_positions == null || _positions.Count == 0)
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        if (!_gameStart) return;
         TryShoot();
         Move();
         ChooseNextPosition();
@@ -61,5 +64,9 @@ public class Enemy : MonoBehaviour {
     }
     public void AddPointToPath(Transform point) {
         _positions.Add(point);
+    }
+    public IEnumerator Wait(float f) {
+        yield return new WaitForSecondsRealtime(f);
+        _gameStart = true;
     }
 }
