@@ -44,6 +44,11 @@ public class Projectile : MonoBehaviour {
             return;
         }
 
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null && name.Contains("pencil")) {
+            player.LogLetter(this);
+        }
+        
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
         
         if (damageable != null) {

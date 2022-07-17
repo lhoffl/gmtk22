@@ -52,6 +52,28 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    bool _hitByL, _hitByH, _hitByF, _hitByO;
+    [SerializeField] Sprite _lhofflSprite;
+
+    public void LogLetter(Projectile projectile) {
+        if (projectile.name.Contains("1")) {
+            _hitByL = true;
+        }
+        if (projectile.name.Contains("2")) {
+            _hitByH = true;
+        }
+        if (projectile.name.Contains("3")) {
+            _hitByO = true;
+        }
+        if (projectile.name.Contains("4")) {
+            _hitByF = true;
+        }
+
+        if (_hitByF && _hitByH && _hitByL && _hitByO) {
+            GetComponent<SpriteRenderer>().sprite = _lhofflSprite;
+        }
+    }
+    
     void Awake() {
         if (Instance == null)
             Instance = this;
