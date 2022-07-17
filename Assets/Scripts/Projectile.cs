@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour {
     [SerializeField] bool _rotate = true;
     [SerializeField] float _rotationSpeed = 0.01f;
 
-    private DamageNumberController _damageNumberController;
     
     Rigidbody2D _rigidbody;
     Collider2D _collider;
@@ -17,7 +16,6 @@ public class Projectile : MonoBehaviour {
     void Awake() {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
-        _damageNumberController = FindObjectOfType<DamageNumberController>();
     }
 
     void Update() {
@@ -52,9 +50,8 @@ public class Projectile : MonoBehaviour {
         Damageable damageable = other.gameObject.GetComponent<Damageable>();
         
         if (damageable != null) {
-             int damage = UnityEngine.Random.Range(1, _damageAmount + 1);
-            damageable.TakeDamage(_damageAmount);
-            if (_damageNumberController) _damageNumberController.SpawnDamageNumber(damage, transform.position);
+            int damage = UnityEngine.Random.Range(1, _damageAmount + 1);
+            damageable.TakeDamage(damage);
             _gun.AddToPool(this);
             return;
         }

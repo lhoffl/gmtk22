@@ -109,4 +109,9 @@ public class Gun : MonoBehaviour {
         "Spread: " + _spread;
     }
 
+    public void UpdateNumberOfProjectiles(int newNum) => _numberOfProjectiles = newNum;
+    public void UpdateSpread(float newSpread) => _spread = newSpread;
+    public void UpdateRateOfFire(float newRoF) => _rateOfFire = newRoF;
+    
+
 }

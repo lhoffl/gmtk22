@@ -133,11 +133,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leg: {fileID: 8604519434889702705}
   _isSmashing: 0
+  _moveSpeed: 0.003
   pauseTimeBeforeSmash: 2
   smashTime: 3
-  smashCooldownFramesLowerBound: 120
-  smashCooldownFramesUpperBound: 361
   smashCooldown: 0
+  _isGoingUp: 0
+  _isGoingLeft: 0
+  pawShadowTransform: {fileID: 6820083120784648217}
+  isRightPaw: 0
 --- !u!1 &4776851243049626935
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,8 +182,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1735340102896926573}
   - component: {fileID: 5271522479162437350}
-  - component: {fileID: 3230657257225868840}
   - component: {fileID: 593274584318844288}
+  - component: {fileID: 4552343622369588526}
   m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
@@ -255,27 +258,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3230657257225868840
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8604519434889702705}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!70 &593274584318844288
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,3 +274,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0.02, y: 0.1}
   m_Size: {x: 0.25, y: 2.38}
   m_Direction: 0
+--- !u!114 &4552343622369588526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604519434889702705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6a93a4f8ef7b04a97114ea9ab546be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAmountOnImpact: 1
