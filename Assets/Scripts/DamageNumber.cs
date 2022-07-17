@@ -7,7 +7,7 @@ public class DamageNumber : MonoBehaviour
     [SerializeField] int value;
     [SerializeField] List<Sprite> _sprites;
     private SpriteRenderer _spriteRenderer;
-    private int framesToLive = 420;
+    private int framesToLive = 210;
     private int frameCount = 0;
     private float moveSpeed = 0.001f;
     void Start()
