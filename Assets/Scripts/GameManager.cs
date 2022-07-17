@@ -58,12 +58,14 @@ public class GameManager : MonoBehaviour
     {
         if(reward.isItem)
         {
-            GoToScene(true, "Level1");
+            if (_level != 10) GoToScene(true, "Level1");
+            else GoToScene(true, "DebugBoss");
             player.GetComponent<PlayerController>().PowerUp(reward.lootBoxItem.healthUp, reward.lootBoxItem.speedUp);
         }
         else
         {
-            GoToScene(true, "Level1");
+            if (_level != 10) GoToScene(true, "Level1");
+            else GoToScene(true, "DebugBoss");
             player.GetComponent<PlayerController>().UpdateGun(reward.lootBoxGun);
         }
     }
