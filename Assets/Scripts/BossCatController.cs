@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossCatController : MonoBehaviour
 {
     [SerializeField] float _speed = 0.5f;
+    [SerializeField] GameManager _gameManager;
     public List<Transform> _positions = new List<Transform>();
     public int _currentPosition = 0;
     public Gun _gun;
@@ -27,6 +28,9 @@ public class BossCatController : MonoBehaviour
         _health = GetComponent<Health>();
         _health.OnHealthChanged += HandleHealthChanged;
         _startingHealth = _health.CurrentHealth;
+
+        
+        if (!_gameManager) _gameManager = FindObjectOfType<GameManager>();
     }
 
     void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
@@ -55,7 +59,7 @@ public class BossCatController : MonoBehaviour
         }
         
         if (e.Health <= 0) {
-            Debug.Log("Game over! You're winner!");
+            _gameManager.GoToScene(false, "WinScreen");
         }
     }
 
