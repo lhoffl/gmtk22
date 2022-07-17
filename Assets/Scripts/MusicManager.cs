@@ -9,6 +9,8 @@ public class MusicManager : MonoBehaviour {
     bool _loopMusic = true;
 
     void Start() {
+        
+        
         _source = GetComponent<AudioSource>();
 
         DontDestroyOnLoad(this);

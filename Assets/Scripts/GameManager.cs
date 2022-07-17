@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         ResetPlayerStats();
+        FindObjectOfType<MusicManager>().EndMusic();
         GoToScene(false, "MainMenu");
     }
 }
