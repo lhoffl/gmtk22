@@ -32,7 +32,6 @@ public class Dash : MonoBehaviour {
     void FixedUpdate() {
         if (Vector3.Distance(_startPosition, transform.position) >= _dashLength) {
             _player.MovementEnabled(true);
-            _player.GetComponent<Damageable>().Invincible = false;
             _renderer.sprite = _originalSprite;
             return;
         }

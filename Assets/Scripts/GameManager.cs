@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void RegisterSpawner(EnemySpawner spawner) {
         OnNewLevel?.Invoke(_level);
         _spawner = spawner;
-        ModifySpawner(Mathf.Clamp(_level, 1, 69), true, _maxPath);
+        ModifySpawner(Mathf.Clamp(_level / 2 + _level / 3, 1, 69), true, _maxPath);
         player.enabled = true;
         player.GetComponent<Damageable>().Heal(0);
         player.IFrameOnNewLevel(2f);
