@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+
+    private float _defaultMoveSpeed;
+    private Gun _defaultGun;
     Gun _gun;
     AimIndicator _aimIndicator;
     bool _movementEnabled = true;
@@ -138,5 +141,13 @@ public class PlayerController : MonoBehaviour {
     }
     public void MovementEnabled(bool enabled) {
         _movementEnabled = enabled;
+    }
+
+    public void ResetStats()
+    {
+        moveSpeed = _defaultMoveSpeed;
+        _gun = _defaultGun;
+        Health playerHealth = GetComponent<Health>();
+        if(playerHealth) playerHealth.Add(playerHealth.MaxHealth);
     }
 }

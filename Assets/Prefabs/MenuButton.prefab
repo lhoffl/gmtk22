@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2802834692165625549}
   - component: {fileID: 8826640293680185562}
   m_Layer: 0
-  m_Name: ReplayButton
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,8 +102,8 @@ MonoBehaviour:
   _gameManager: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _sprites:
-  - {fileID: -458054125, guid: 52d32d801b36cd74489a7b946ce14e3d, type: 3}
-  - {fileID: 89215311, guid: 52d32d801b36cd74489a7b946ce14e3d, type: 3}
+  - {fileID: -1766627612, guid: 318d904fb069f4c44b7017c3f8ab93a4, type: 3}
+  - {fileID: -1707140138, guid: 318d904fb069f4c44b7017c3f8ab93a4, type: 3}
 --- !u!50 &2802834692165625549
 Rigidbody2D:
   serializedVersion: 4
