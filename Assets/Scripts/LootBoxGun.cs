@@ -31,7 +31,7 @@ public class LootBoxGun : MonoBehaviour
     private void RandomizeProperties()
     {
         rateOfFire = Random.Range(0.1f, 1.0f);
-        bulletSpeed = Random.Range(1f, 10f);
+        bulletSpeed = Random.Range(8f, 20f);
         projectilePrefab = _potentialProjectilePrefabs[Random.Range(0, _potentialProjectilePrefabs.Count)];
         numberOfProjectiles = Random.Range(0, 100) < 75 ? 1 : Random.Range(1,3); 
         spread = numberOfProjectiles == 1 ? 0f : Random.Range(45, 90);

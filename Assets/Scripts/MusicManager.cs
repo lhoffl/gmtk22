@@ -8,8 +8,15 @@ public class MusicManager : MonoBehaviour {
 
     bool _loopMusic = true;
 
+    public static MusicManager Instance { get; private set; }
+    
     void Start() {
-        
+
+        if (Instance == null)
+            Instance = this;
+        else {
+            Destroy(this);
+        }
         
         _source = GetComponent<AudioSource>();
 

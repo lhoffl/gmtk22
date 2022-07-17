@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour {
     AimIndicator _aimIndicator;
     bool _movementEnabled = true;
 
+    Camera _currentCamera;
+    
     AudioSource _source;
     Health _health;
 
@@ -34,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         _source = GetComponent<AudioSource>();
         _health = GetComponent<Health>();
         _health.OnHealthChanged += HandleHealthChanged;
@@ -44,26 +46,50 @@ public class PlayerController : MonoBehaviour {
         if (e.Health <= 0) {
             _source.PlayOneShot(_deathClip);
             OnPlayerDied?.Invoke();
+            _gun = _defaultGun;
         }
     }
 
     void Awake() {
         if (Instance == null)
             Instance = this;
+        else
+            Destroy(this);
 
+        _defaultMoveSpeed = moveSpeed;
+       
+        DontDestroyOnLoad(this);
+        
         _gun = GetComponent<Gun>();
         _gun.OnShotFired += HandleShotFired;
         _aimIndicator = GetComponent<AimIndicator>();
         GameManager.Instance.OnNewLevel += ResetCamera;
+
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        
+        if (GameObject.FindObjectOfType<Camera>() == null) return;
         ResetCamera(0);
     }
 
+    void OnEnable() {
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        MovementEnabled(true);
+        if(!_gun)
+        _gun = GetComponent<Gun>();
+    }
+
     void ResetCamera(int level) {
-        MainCamera = Camera.main;
+        MainCamera = FindObjectOfType<Camera>();
         
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.extents.y;
+        
+        //GetComponent<Damageable>().TakeDamage(0);
     }
 
     void HandleShotFired() {
@@ -90,6 +116,14 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             _gun.FireProjectile();
+        }
+
+        if (!_gun) {
+            _gun = GetComponent<Gun>();
+        }
+
+        if (!MainCamera) {
+            MainCamera = Camera.current;
         }
         
         _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
@@ -140,7 +174,11 @@ public class PlayerController : MonoBehaviour {
     }
     
     Vector3 FixedScreenToWorldPoint() {
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (MainCamera == null) {
+            MainCamera = Camera.current;
+        }
+        
+        Vector3 worldPoint = MainCamera.ScreenToWorldPoint(Input.mousePosition);
         return new Vector3(worldPoint.x, worldPoint.y, 0f);
     }
     public void MovementEnabled(bool enabled) {
@@ -156,6 +194,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     public IEnumerator IFrameOnNewLevel(float f) {
+        enabled = true;
+        GetComponent<Damageable>().Heal(0); 
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        MovementEnabled(true);
+        if(_gun == null)
+            _gun = GetComponent<Gun>();
+        MainCamera = Camera.current;
+        ResetCamera(0);
         GetComponent<Damageable>().Invincible = true;
         yield return new WaitForSecondsRealtime(f);
         GetComponent<Damageable>().Invincible = false;

@@ -3,6 +3,8 @@ public class AimIndicator : MonoBehaviour {
     [SerializeField] Transform _aimIndicator;
 
     void Update() {
+        if (Camera.main == null) return;
+        
         var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition = new Vector3(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y, 0).normalized;
         

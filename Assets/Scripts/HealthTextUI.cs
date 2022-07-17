@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class HealthTextUI : MonoBehaviour {
@@ -9,10 +10,12 @@ public class HealthTextUI : MonoBehaviour {
     Health _health;
     
     void Start() {
+        if (PlayerController.Instance == null) return;
         _health = PlayerController.Instance.GetComponent<Health>();
         if (_health == null) return;
         _health.OnHealthChanged += UpdateUI;
         Reset();
+        UpdateUI(null, new HealthChangedEventArgs {Health = _health.CurrentHealth, MaxHealth = _health.MaxHealth});
     }
     
     void UpdateUI(object sender, HealthChangedEventArgs e) {

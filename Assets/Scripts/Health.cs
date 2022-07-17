@@ -42,5 +42,8 @@ public class Health : MonoBehaviour {
         });
     }
 
-    void HandleDeath() => gameObject.SetActive(false);
+    void HandleDeath() {
+        gameObject.SetActive(false);
+        _health = MaxHealth;
+    }
 }
