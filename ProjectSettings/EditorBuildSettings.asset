@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Andy Test.unity
     guid: c4209ea071a4aba4096c6a2874e2a610
   - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 2a1a2d8d4af23c84ea80abf8a0d6345b
+  - enabled: 1
     path: Assets/Scenes/DebugBoss.unity
     guid: d76a0edcf2039e0469a55a8c5863b895
   - enabled: 1
