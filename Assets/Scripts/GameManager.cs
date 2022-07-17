@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerController playerPrefab;
     [SerializeField] SceneManager sceneManager;
     [SerializeField] int _lootboxLevelMod = 5;
-    
+     
     EnemySpawner _spawner;
     public static GameManager Instance;
     
@@ -134,6 +134,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game over man");
         GoToScene(false, "GameOver");
+        _level = 1;
+        _maxPath = 5;
     }
 
     public void MainMenu()
