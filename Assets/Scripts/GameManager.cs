@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GoToScene(bool spawnPlayer, string scene){
-        player.gameObject.SetActive(spawnPlayer);
+        player.enabled = spawnPlayer;
         player.GetComponent<PlayerController>().GetComponent<Gun>().ClearPool();
         sceneManager.ChangeScene(scene);
     }
