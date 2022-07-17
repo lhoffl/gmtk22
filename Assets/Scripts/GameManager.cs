@@ -27,13 +27,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if(player) Debug.Log(player.name + " - " + player.transform.position.ToString());
-        //else Debug.Log("No player");
-        testInputs();
-    }
 
     void testInputs()
     {
@@ -48,31 +41,20 @@ public class GameManager : MonoBehaviour
             //go to lootbox scene
             GoToScene(false, "Debug_Lootbox_Scene");
         }
-
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            //spawn player
-            // if(!player) player = playerPrefab.GetComponent<PlayerController>().spawnPlayer().gameObject;
-        }
     }
 
     public void RewardLootBox(LootBoxObject reward)
     {
-        //update player values
         if(reward.isItem)
         {
-            Debug.Log("REWARD: " + "HEALTH+" + reward.lootBoxItem.healthUp + ", SPEED+" + reward.lootBoxItem.speedUp);
             GoToScene(true, "Level1");
             player.GetComponent<PlayerController>().PowerUp(reward.lootBoxItem.healthUp, reward.lootBoxItem.speedUp);
-            Debug.Log("NEW SPEED: " + player.GetComponent<PlayerController>().moveSpeed);
         }
         else
         {
-            Debug.Log("REWARD: " + "beeg new gun");
             GoToScene(true, "Level1");
             player.GetComponent<PlayerController>().UpdateGun(reward.lootBoxGun);
         }
-        //go to next level
     }
 
     public void GoToScene(bool spawnPlayer, string scene){
@@ -132,7 +114,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game over man");
         GoToScene(false, "GameOver");
     }
 
