@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         
         DontDestroyOnLoad(this);
         GetPlayer();
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Start() {
