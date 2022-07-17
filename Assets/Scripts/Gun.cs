@@ -14,9 +14,22 @@ public class Gun : MonoBehaviour {
     float _timeSinceLastShot = -1;
     Queue<Projectile> _pool = new Queue<Projectile>();
     Vector3 _direction = Vector3.down;
+    float _oRof;
+    float _oSpeed;
+    Projectile _oProj;
+    int _oNum;
+    float _oSpread;
 
-    public event Action OnShotFired;    
-    
+    public event Action OnShotFired;
+
+    void Awake() {
+        _oRof = _rateOfFire;
+        _oSpeed = _bulletSpeed;
+        _oProj = _projectilePrefab;
+        _oNum = _numberOfProjectiles;
+        _oSpread = _spread;
+    }
+
     void Update() => _timeSinceLastShot -= Time.deltaTime;
     
     public void FireProjectile() {
@@ -76,6 +89,14 @@ public class Gun : MonoBehaviour {
         _projectilePrefab = newGun.projectilePrefab;
         _numberOfProjectiles = newGun.numberOfProjectiles;
         _spread = newGun.spread;
+    }
+
+    public void ResetGun() {
+        _rateOfFire = _oRof;
+        _bulletSpeed = _oSpeed;
+        _projectilePrefab = _oProj;
+        _numberOfProjectiles = _oNum;
+        _spread = _oSpread;
     }
 
     public string GunStatsString()

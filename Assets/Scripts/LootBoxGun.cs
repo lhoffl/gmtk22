@@ -15,7 +15,7 @@ public class LootBoxGun : MonoBehaviour
     [SerializeField] List<Sprite> _sprites;
 
     public string gunName;
-
+    
     void Start()
     {
         if (!text) text = this.GetComponent<TextMesh>();
@@ -57,6 +57,14 @@ public class LootBoxGun : MonoBehaviour
         text.text = GunStatsString();
     }
 
+    public LootBoxGun(float rof, float speed, Projectile projectile, int num, float spread) {
+        rateOfFire = rof;
+        bulletSpeed = speed;
+        projectilePrefab = projectile;
+        numberOfProjectiles = num;
+        this.spread = spread;
+    }
+    
     public void SetGun(int roll)
     {
         

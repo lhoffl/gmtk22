@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour {
     private float objectHeight;
 
     private float _defaultMoveSpeed;
-    private Gun _defaultGun;
+    
+    LootBoxGun _defaultGun;
     Gun _gun;
     AimIndicator _aimIndicator;
     bool _movementEnabled = true;
@@ -46,7 +47,8 @@ public class PlayerController : MonoBehaviour {
         if (e.Health <= 0) {
             _source.PlayOneShot(_deathClip);
             OnPlayerDied?.Invoke();
-            _gun = _defaultGun;
+            _gun.ResetGun();
+            _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
         }
     }
 
@@ -78,8 +80,6 @@ public class PlayerController : MonoBehaviour {
             moveSpeed = _defaultMoveSpeed;
         }
         MovementEnabled(true);
-        if(!_gun)
-        _gun = GetComponent<Gun>();
     }
 
     void ResetCamera(int level) {
@@ -142,8 +142,7 @@ public class PlayerController : MonoBehaviour {
         rig.velocity = GetMovementVectorFromInputs();
     }
 
-    public void UpdateGun(LootBoxGun newGun)
-    {
+    public void UpdateGun(LootBoxGun newGun) {
         _gun.UpdateGun(newGun);
         _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
     }
@@ -174,7 +173,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     Vector3 FixedScreenToWorldPoint() {
-        if (MainCamera == null) {
+        if (!MainCamera) {
             MainCamera = Camera.current;
         }
         
@@ -188,7 +187,8 @@ public class PlayerController : MonoBehaviour {
     public void ResetStats()
     {
         moveSpeed = _defaultMoveSpeed;
-        _gun = _defaultGun;
+        _gun.ResetGun();
+        _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
         Health playerHealth = GetComponent<Health>();
         if(playerHealth) playerHealth.Add(playerHealth.MaxHealth);
     }
@@ -200,8 +200,6 @@ public class PlayerController : MonoBehaviour {
             moveSpeed = _defaultMoveSpeed;
         }
         MovementEnabled(true);
-        if(_gun == null)
-            _gun = GetComponent<Gun>();
         MainCamera = Camera.current;
         ResetCamera(0);
         GetComponent<Damageable>().Invincible = true;
