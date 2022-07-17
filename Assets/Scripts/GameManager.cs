@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     private PlayerController player;
     [SerializeField] PlayerController playerPrefab;
     [SerializeField] SceneManager sceneManager;
-
+    [SerializeField] int _lootboxLevelMod = 5;
+    
     EnemySpawner _spawner;
     public static GameManager Instance;
     
@@ -61,14 +62,14 @@ public class GameManager : MonoBehaviour
         if(reward.isItem)
         {
             Debug.Log("REWARD: " + "HEALTH+" + reward.lootBoxItem.healthUp + ", SPEED+" + reward.lootBoxItem.speedUp);
-            GoToScene(true, "Debug_Scene");
+            GoToScene(true, "Level1");
             player.GetComponent<PlayerController>().PowerUp(reward.lootBoxItem.healthUp, reward.lootBoxItem.speedUp);
             Debug.Log("NEW SPEED: " + player.GetComponent<PlayerController>().moveSpeed);
         }
         else
         {
             Debug.Log("REWARD: " + "beeg new gun");
-            GoToScene(true, "Debug_Scene");
+            GoToScene(true, "Level1");
             player.GetComponent<PlayerController>().UpdateGun(reward.lootBoxGun);
         }
         //go to next level
@@ -83,7 +84,12 @@ public class GameManager : MonoBehaviour
     void HandleNewLevel() {
         _level++;
         _maxPath++;
-        GoToScene(true, "Level1");
+
+        if (_level % 5 == 0) {
+            GoToScene(false, "Debug_Lootbox_scene");
+        } else {
+            GoToScene(true, "Level1");
+        }
     }
 
     public void Test() {
@@ -107,7 +113,7 @@ public class GameManager : MonoBehaviour
         OnNewLevel?.Invoke(_level);
         _spawner = spawner;
         ModifySpawner(Mathf.Clamp(_level / 2, 1, 69), true, _maxPath);
-        player.IFrameOnNewLevel(1f);
+        player.IFrameOnNewLevel(2f);
     }
     
     public void ModifySpawner(int numEnemies, bool spawnCover, int maxPathLength = 5, float delay = 2f) {
