@@ -8,4 +8,10 @@ public class PaperPlaneEnemy : Enemy {
             GetComponent<Damageable>().TakeDamage(int.MaxValue);
         }
     }
+
+    protected override void Update()
+    {
+        transform.right = -(_positions[_currentPosition].position - transform.position);
+        base.Update();
+    }
 }

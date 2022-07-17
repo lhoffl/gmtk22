@@ -8,7 +8,8 @@ public class MouseEnemy : Enemy {
     }
 
     protected override void Update() {
-        transform.rotation = Quaternion.LookRotation(_rig.velocity);
+
+        transform.right = -(_positions[_currentPosition].position - transform.position);
         base.Update();
     }
 }

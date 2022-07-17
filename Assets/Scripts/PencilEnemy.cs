@@ -16,7 +16,8 @@ public class PencilEnemy : Enemy {
     }
     
     protected override void TryShoot() {
-        _gun.UpdateProjectile(GetRandomProjectile());
+        if(_projectiles.Length > 0)
+            _gun.UpdateProjectile(GetRandomProjectile());
         base.TryShoot();
     }
 
