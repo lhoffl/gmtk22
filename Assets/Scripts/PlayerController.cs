@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         _gun = GetComponent<Gun>();
         _gun.OnShotFired += HandleShotFired;
         _aimIndicator = GetComponent<AimIndicator>();
-        GameManager.Instance.OnNewLevel += ResetCamera;
+        //GameManager.Instance.OnNewLevel += ResetCamera;
 
         if (moveSpeed == 0) {
             moveSpeed = _defaultMoveSpeed;

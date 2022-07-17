@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BossCatPaw : MonoBehaviour
 {
+    private float _shadowWaitTime = 0.5f;
     public GameObject leg;
-    private float[] _yBounds = {0.2f, 3.75f};
+    private float[] _yBounds = {0.59f, 3.75f};
     private float[] _xBounds = {-3, -0.5f};
     // private SpriteRenderer _legSpriteRenderer;
     // private SpriteRenderer _shadowSpriteRenderer;
@@ -18,11 +19,12 @@ public class BossCatPaw : MonoBehaviour
     private int _smashCooldownFramesLowerBound = 1000;
     private int _smashCooldownFramesUpperBound = 3000;
     public int smashCooldown = 0;
-
     public bool _isGoingUp = false;
     public bool _isGoingLeft = false;
+    public Transform pawShadowTransform;
 
     public bool isRightPaw = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -67,9 +69,28 @@ public class BossCatPaw : MonoBehaviour
 
     IEnumerator SmashCoroutine()
     {
+        float elapsedTime = 0;
+        float waitTime = _shadowWaitTime;
         _shouldMove = false;
         _isSmashing = true;
+        while (elapsedTime < waitTime)
+        {
+            pawShadowTransform.localScale = Vector3.Lerp(pawShadowTransform.localScale, new Vector3(0.85f, 0.85f, 0.85f), (elapsedTime / waitTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
         yield return new WaitForSecondsRealtime(pauseTimeBeforeSmash);
+        
+        elapsedTime = 0f;
+        waitTime = _shadowWaitTime;
+        while (elapsedTime < waitTime)
+        {
+            pawShadowTransform.localScale = Vector3.Lerp(pawShadowTransform.localScale, new Vector3(1f, 1f, 1f), (elapsedTime / waitTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         CatLegActive(true);
         yield return new WaitForSecondsRealtime(smashTime);
         CatLegActive(false);
@@ -79,8 +100,5 @@ public class BossCatPaw : MonoBehaviour
         
     }
 
-    void CatLegActive(bool isActive)
-    {
-        leg.SetActive(isActive);
-    }
+    void CatLegActive(bool isActive) => leg.SetActive(isActive);
 }
