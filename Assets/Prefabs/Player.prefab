@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rateOfFire: 0.5
-  _bulletSpeed: 4
+  _bulletSpeed: 8
   _projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
   _numberOfProjectiles: 1
   _spread: 30
@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputKey: 32
-  _speed: 300
-  _dashLength: 1.5
+  _speed: 690
+  _dashLength: 2
   _cooldown: 1
   _invSprite: {fileID: 21300000, guid: 308a4b6406708ec4fa54bea7239b7c68, type: 3}
 --- !u!82 &6720555611902074413

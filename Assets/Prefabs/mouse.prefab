@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6851441735615358110}
   - component: {fileID: 6851441735615358104}
   - component: {fileID: 6851441735615358103}
-  - component: {fileID: 7404237652740263940}
+  - component: {fileID: -6633225404546266421}
   m_Layer: 6
   m_Name: mouse
   m_TagString: Untagged
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19
---- !u!114 &7404237652740263940
+--- !u!114 &-6633225404546266421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6851441735615358111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07733c61001f5784dbea2c31c1c9da89, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b8d2de14a864057b0322c4bdd94eb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _positions: []
   _speed: 1
   ShouldShoot: 0
-  _rig: {fileID: 0}
+  _damageAmountOnImpact: 0

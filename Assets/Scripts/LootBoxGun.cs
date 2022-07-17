@@ -5,7 +5,7 @@ using UnityEngine;
 public class LootBoxGun : MonoBehaviour
 {
     public float rateOfFire = 0.5f;
-    public  float bulletSpeed = 2f;
+    public  float bulletSpeed = 8f;
     public  Projectile projectilePrefab;
     public  int numberOfProjectiles = 1;
     public  float spread = 0f;
