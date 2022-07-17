@@ -17,7 +17,7 @@ public class Damageable : MonoBehaviour {
         if (_health != null) 
         {
             _health.Remove(Mathf.Abs(amount));
-            if (_damageNumberController || amount != int.MaxValue) _damageNumberController.SpawnDamageNumber(Mathf.Abs(amount), transform.position);
+            if (_damageNumberController && amount != int.MaxValue) _damageNumberController.SpawnDamageNumber(Mathf.Abs(amount), transform.position);
         }
             
     }
