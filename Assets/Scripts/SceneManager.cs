@@ -18,14 +18,14 @@ public class SceneManager : MonoBehaviour {
 
     public void ChangeScene(string scene)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
     }
     
     public void LoadLevel(int level) {
         StartCoroutine(Wait(level));
     }
     IEnumerator Wait(int level) {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(0.25f);
         ChangeScene("Level" + level);
     }
 }

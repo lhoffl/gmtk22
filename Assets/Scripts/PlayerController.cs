@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,11 +22,14 @@ public class PlayerController : MonoBehaviour {
     private float objectHeight;
 
     private float _defaultMoveSpeed;
-    private Gun _defaultGun;
+    
+    LootBoxGun _defaultGun;
     Gun _gun;
     AimIndicator _aimIndicator;
     bool _movementEnabled = true;
 
+    Camera _currentCamera;
+    
     AudioSource _source;
     Health _health;
 
@@ -34,7 +38,6 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         _source = GetComponent<AudioSource>();
         _health = GetComponent<Health>();
         _health.OnHealthChanged += HandleHealthChanged;
@@ -44,26 +47,49 @@ public class PlayerController : MonoBehaviour {
         if (e.Health <= 0) {
             _source.PlayOneShot(_deathClip);
             OnPlayerDied?.Invoke();
+            _gun.ResetGun();
+            _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
         }
     }
 
     void Awake() {
         if (Instance == null)
             Instance = this;
+        else
+            Destroy(this);
 
+        _defaultMoveSpeed = moveSpeed;
+       
+        DontDestroyOnLoad(this);
+        
         _gun = GetComponent<Gun>();
         _gun.OnShotFired += HandleShotFired;
         _aimIndicator = GetComponent<AimIndicator>();
         GameManager.Instance.OnNewLevel += ResetCamera;
+
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        
+        if (GameObject.FindObjectOfType<Camera>() == null) return;
         ResetCamera(0);
     }
 
+    void OnEnable() {
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        MovementEnabled(true);
+    }
+
     void ResetCamera(int level) {
-        MainCamera = Camera.main;
+        MainCamera = FindObjectOfType<Camera>();
         
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
         objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.extents.y;
+        
+        //GetComponent<Damageable>().TakeDamage(0);
     }
 
     void HandleShotFired() {
@@ -91,6 +117,14 @@ public class PlayerController : MonoBehaviour {
         {
             _gun.FireProjectile();
         }
+
+        if (!_gun) {
+            _gun = GetComponent<Gun>();
+        }
+
+        if (!MainCamera) {
+            MainCamera = Camera.current;
+        }
         
         _gun.SetDirection((FixedScreenToWorldPoint() - transform.position).normalized);
     }
@@ -108,8 +142,7 @@ public class PlayerController : MonoBehaviour {
         rig.velocity = GetMovementVectorFromInputs();
     }
 
-    public void UpdateGun(LootBoxGun newGun)
-    {
+    public void UpdateGun(LootBoxGun newGun) {
         _gun.UpdateGun(newGun);
         _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
     }
@@ -140,7 +173,11 @@ public class PlayerController : MonoBehaviour {
     }
     
     Vector3 FixedScreenToWorldPoint() {
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!MainCamera) {
+            MainCamera = Camera.current;
+        }
+        
+        Vector3 worldPoint = MainCamera.ScreenToWorldPoint(Input.mousePosition);
         return new Vector3(worldPoint.x, worldPoint.y, 0f);
     }
     public void MovementEnabled(bool enabled) {
@@ -150,12 +187,21 @@ public class PlayerController : MonoBehaviour {
     public void ResetStats()
     {
         moveSpeed = _defaultMoveSpeed;
-        _gun = _defaultGun;
+        _gun.ResetGun();
+        _aimIndicator.UpdateSprite(_gun.Projectile.GetComponent<SpriteRenderer>().sprite);
         Health playerHealth = GetComponent<Health>();
         if(playerHealth) playerHealth.Add(playerHealth.MaxHealth);
     }
 
     public IEnumerator IFrameOnNewLevel(float f) {
+        enabled = true;
+        GetComponent<Damageable>().Heal(0); 
+        if (moveSpeed == 0) {
+            moveSpeed = _defaultMoveSpeed;
+        }
+        MovementEnabled(true);
+        MainCamera = Camera.current;
+        ResetCamera(0);
         GetComponent<Damageable>().Invincible = true;
         yield return new WaitForSecondsRealtime(f);
         GetComponent<Damageable>().Invincible = false;

@@ -21,12 +21,23 @@ public class GameManager : MonoBehaviour
     void Awake() {
         if(Instance == null)
             Instance = this;
+        else
+            Destroy(this);
         
         DontDestroyOnLoad(this);
         GetPlayer();
-        
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
+    void Start() {
+        StartCoroutine(StartGame());
+    }
+
+    IEnumerator StartGame() {
+        yield return new WaitForSecondsRealtime(0.2f);
+        if(player != null)
+            MainMenu();
+    }
 
     void testInputs()
     {
@@ -58,9 +69,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void GoToScene(bool spawnPlayer, string scene){
-        player.enabled = spawnPlayer;
         player.GetComponent<PlayerController>().GetComponent<Gun>().ClearPool();
         sceneManager.ChangeScene(scene);
+        StartCoroutine(EnablePlayer(spawnPlayer));
+    }
+
+    IEnumerator EnablePlayer(bool spawnPlayer) {
+        yield return new WaitForEndOfFrame();
+        player.gameObject.SetActive(spawnPlayer);
     }
 
     void HandleNewLevel() {
@@ -95,9 +111,11 @@ public class GameManager : MonoBehaviour
         OnNewLevel?.Invoke(_level);
         _spawner = spawner;
         ModifySpawner(Mathf.Clamp(_level / 2, 1, 69), true, _maxPath);
+        player.enabled = true;
+        player.GetComponent<Damageable>().Heal(0);
         player.IFrameOnNewLevel(2f);
     }
-    
+
     public void ModifySpawner(int numEnemies, bool spawnCover, int maxPathLength = 5, float delay = 2f) {
         _spawner.SpawnCover = spawnCover;
         _spawner._totalNumberOfEnemies = numEnemies;
@@ -122,7 +140,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         ResetPlayerStats();
-        FindObjectOfType<MusicManager>().EndMusic();
+        //FindObjectOfType<MusicManager>().EndMusic();
         GoToScene(false, "MainMenu");
     }
 }

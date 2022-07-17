@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rateOfFire: 0.5
-  bulletSpeed: 2
-  projectilePrefab: {fileID: -5148212599140767921, guid: be55e34039f4d3449b9f5676d561d562, type: 3}
+  bulletSpeed: 8
+  projectilePrefab: {fileID: -4071066885685467097, guid: e1bf8154a500c9b4a9490d1c1fded74b, type: 3}
   numberOfProjectiles: 1
   spread: 0
   _potentialProjectilePrefabs:
@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 766554277, guid: d829cb8a80f97d04c94a11bceab51569, type: 3}
   - {fileID: -2036702410, guid: 1a4e31e67398d174b91e603fded67194, type: 3}
   - {fileID: 2051645333, guid: 172a3413220ab00439edb03e652e30d6, type: 3}
-  gunName: d4
+  gunName: d8
 --- !u!212 &6925034451816915401
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -200296486, guid: 5b7f89358fded2d459e978c8a1f660b8, type: 3}
+  m_Sprite: {fileID: 766554277, guid: d829cb8a80f97d04c94a11bceab51569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

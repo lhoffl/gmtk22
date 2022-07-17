@@ -27,7 +27,10 @@ public class PlayButton : MonoBehaviour {
         }
     }
 
-
+    public void StartGame() {
+        GameManager.Instance.GoToScene(true, "Level1");
+    }
+    
     public void UpdateUI() {
         _startUpdate = true;
         _currentTime = _frameLength;
