@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject player;
-    [SerializeField] GameObject playerPrefab;
+    private PlayerController player;
+    [SerializeField] PlayerController playerPrefab;
     [SerializeField] SceneManager sceneManager;
 
     EnemySpawner _spawner;
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GoToScene(bool spawnPlayer, string scene){
-        player.SetActive(spawnPlayer);
+        player.gameObject.SetActive(spawnPlayer);
         player.GetComponent<PlayerController>().GetComponent<Gun>().ClearPool();
         sceneManager.ChangeScene(scene);
     }
@@ -92,7 +92,11 @@ public class GameManager : MonoBehaviour
         if (!player)
         {
             player = Instantiate(playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+            player.OnPlayerDied += HandlePlayerDeath;
         }
+    }
+    public void HandlePlayerDeath() {
+        GameOver();
     }
 
     public void RegisterSpawner(EnemySpawner spawner) {
@@ -125,11 +129,4 @@ public class GameManager : MonoBehaviour
         ResetPlayerStats();
         GoToScene(false, "MainMenu");
     }
-
-    // void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
-    //     Debug.Log("HandleHealthChanged event popped");
-    //     if (e.Health <= 0) {
-    //         GameOver();
-    //     }
-    // }
 }

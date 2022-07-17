@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e3303c1a5d45a44b37e7379ad986dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6777041109258208759, guid: b1f92bf6c1b567d40a1581d3781e1d4f, type: 3}
+  playerPrefab: {fileID: 8288462539391291082, guid: b1f92bf6c1b567d40a1581d3781e1d4f, type: 3}
   sceneManager: {fileID: 896484255799921686, guid: 108b4cd321001e4429b5210e5f96ed37, type: 3}
-  _spawner: {fileID: 0}
+  _numOfEnemies: 2
+  _maxPath: 5

@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     Health _health;
 
     public static PlayerController Instance { get; private set; }
+    public event Action OnPlayerDied;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour {
     void HandleHealthChanged(object sender, HealthChangedEventArgs e) {
         if (e.Health <= 0) {
             _source.PlayOneShot(_deathClip);
+            OnPlayerDied?.Invoke();
         }
     }
 
