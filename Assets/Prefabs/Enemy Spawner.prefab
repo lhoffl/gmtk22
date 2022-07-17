@@ -1294,6 +1294,7 @@ MonoBehaviour:
   _totalNumberOfEnemies: 3
   _maxPathLength: 7
   _shouldShoot: 1
+  DebugMode: 0
   SpawnCover: 1
 --- !u!1 &7887245751065755498
 GameObject:
