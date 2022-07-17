@@ -9,7 +9,8 @@ public class BossHealthUI : MonoBehaviour {
     }
     
     void UpdateUI(object sender, HealthChangedEventArgs e) {
-        _fillImage.fillAmount = (e.Health / e.MaxHealth);
+        float amount = (float) e.Health / e.MaxHealth;
+        _fillImage.fillAmount = amount;
     }
 
 }
